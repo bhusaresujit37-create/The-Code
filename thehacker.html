@@ -1,0 +1,153 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hacker Code Studio</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #020807;
+  color: #00ff66;
+  font-family: monospace;
+}
+
+header {
+  background: #001a10;
+  padding: 18px;
+  text-align: center;
+  border-bottom: 2px solid #00ff66;
+  text-shadow: 0 0 12px lime;
+}
+
+h1 { margin: 0; }
+
+.toolbar {
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button, select {
+  background: #002b18;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00ff66;
+  color: black;
+}
+
+textarea {
+  width: 100%;
+  height: 300px;
+  background: #000;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  padding: 15px;
+  font-size: 15px;
+  outline: none;
+  resize: vertical;
+  font-family: monospace;
+}
+
+h3 {
+  padding-left: 12px;
+}
+
+iframe {
+  width: 100%;
+  height: 260px;
+  background: white;
+  border: 2px solid #00ff66;
+}
+
+.status {
+  padding: 12px;
+  color: lime;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>☠ HACKER CODE STUDIO ☠</h1>
+  <p>WELCOME TO YOUR CODING WORLD</p>
+</header>
+
+<div class="toolbar">
+  <select id="language">
+    <option value="html">HTML / CSS / JS</option>
+  </select>
+
+  <button onclick="runCode()">▶ RUN CODE</button>
+  <button onclick="clearCode()">CLEAR</button>
+  <button onclick="saveCode()">💾 SAVE</button>
+</div>
+
+<h3>🟢 CODE EDITOR</h3>
+
+<textarea id="editor" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background: black;
+  color: lime;
+  text-align: center;
+  font-family: monospace;
+}
+</style>
+</head>
+<body>
+
+<h1>WELCOME HACKER!</h1>
+<p>My Coding Studio</p>
+
+<button onclick="alert('Hello Hacker!')">
+CLICK ME
+</button>
+
+</body>
+</html></textarea>
+
+<h3>🖥 LIVE OUTPUT</h3>
+
+<iframe id="output" sandbox="allow-scripts"></iframe>
+
+<div class="status">
+  ● SYSTEM ONLINE | HACKER MODE ACTIVE
+</div>
+
+<script>
+function runCode() {
+  let code = document.getElementById("editor").value;
+  document.getElementById("output").srcdoc = code;
+}
+
+function clearCode() {
+  document.getElementById("editor").value = "";
+  document.getElementById("output").srcdoc = "";
+}
+
+function saveCode() {
+  let code = document.getElementById("editor").value;
+  let file = new Blob([code], {type: "text/html"});
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(file);
+  link.download = "my-hacker-code.html";
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+runCode();
+</script>
+
+</body>
+</html>
